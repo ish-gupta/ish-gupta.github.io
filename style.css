@@ -1,0 +1,85 @@
+@font-face {
+    font-family: "San Francisco";
+    font-weight: 700;
+    src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff");
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 100vh;
+    width: 100vw;
+    background-color: #f3f3f3;
+    margin: 0;
+    font-family: "San Francisco", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+}
+
+.chat-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #fff;
+}
+
+#chat-box {
+    padding: 20px;
+    flex-grow: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1px; /* Adjust this value to reduce the space between chat boxes */
+}
+
+.message {
+    display: inline-block;
+    max-width: 80%;
+    border-radius: 18px;
+    padding: 10px 15px;
+    margin: 5px 0;
+    font-size: 20px;
+    line-height: 1.4;
+    position: relative;
+    word-wrap: break-word;
+    clear: both;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.message.bot {
+    background-color: #f0f0f0;
+    color: black;
+    border-radius: 18px 18px 18px 0;
+    align-self: flex-start;
+}
+
+.message.user {
+    background-color: #007aff;
+    color: white;
+    border-radius: 18px 18px 0 18px;
+    align-self: flex-end;
+}
+
+.user-input {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+    background: #fff;
+}
+
+#user-message {
+    border: none;
+    padding: 15px;
+    flex-grow: 1;
+    font-size: 16px;
+}
+
+#send-button {
+    border: none;
+    padding: 15px;
+    background: #007aff;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
