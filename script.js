@@ -7,7 +7,7 @@ const messages = [
     { text: "I'm Ishita", type: 'bot' },
     { text: 'I like to code', type: 'bot' },
     { text: "You can contact me at <a href='mailto:ishitangupta@gmail.com'>ishitangupta@gmail.com</a>", type: 'bot' },
-    { text: "Or connect with me on LinkedIn: <a href='linkedin.com/in/ish--gupta'>linkedin.com/in/ish-gupta/</a>", type: 'bot' },
+    { text: "Or connect with me on LinkedIn: <a href='https://linkedin.com/in/ish--gupta'>linkedin.com/in/ish--gupta/</a>", type: 'bot' },
     { text: 'Have a nice evening', type: 'bot' }
 ];
 
@@ -19,12 +19,24 @@ function displayMessage(text, type) {
     chatBox.scrollTop = chatBox.scrollHeight;
 }
 
+function displayTypingIndicator() {
+    const typingDiv = document.createElement('div');
+    typingDiv.classList.add('message', 'bot', 'typing-indicator');
+    typingDiv.innerHTML = '<span></span><span></span><span></span>';
+    chatBox.appendChild(typingDiv);
+    chatBox.scrollTop = chatBox.scrollHeight;
+    return typingDiv;
+}
+
 function displayMessagesSequentially(messages, index = 0) {
     if (index < messages.length) {
+        const typingIndicator = displayTypingIndicator();
+
         setTimeout(() => {
+            chatBox.removeChild(typingIndicator);
             displayMessage(messages[index].text, messages[index].type);
             displayMessagesSequentially(messages, index + 1);
-        }, 1000);
+        }, 1500); // Show typing indicator for 2 seconds
     }
 }
 
@@ -34,15 +46,16 @@ async function getResponse(userMessage) {
 
     for (let i = 0; i < userMessage.length; i++) {
         let char = userMessage[i];
-        if (char.match(/[a-z]/i)) { // Check if the character is a letter
+
+        if (char.match(/[a-z]/i)) {
             if (upper) {
                 result += char.toLowerCase();
             } else {
                 result += char.toUpperCase();
             }
-            upper = !upper; // Toggle the case for the next letter
+            upper = !upper;
         } else {
-            result += char; // Non-letter characters remain unchanged
+            result += char;
         }
     }
 
@@ -51,15 +64,18 @@ async function getResponse(userMessage) {
 
 function sendMessage() {
     const userMessage = userMessageInput.value.trim();
+
     if (userMessage !== '') {
         displayMessage(userMessage, 'user');
         userMessageInput.value = '';
 
-        // Fetch the response and display it
+        const typingIndicator = displayTypingIndicator();
+
         getResponse(userMessage).then(botResponse => {
             setTimeout(() => {
+                chatBox.removeChild(typingIndicator);
                 displayMessage(botResponse, 'bot');
-            }, 1000);
+            }, 1000); // Show typing indicator for 2 seconds
         });
     }
 }
@@ -72,4 +88,6 @@ userMessageInput.addEventListener('keypress', (event) => {
     }
 });
 
-displayMessagesSequentially(messages);
+setTimeout(() => {
+    displayMessagesSequentially(messages);
+}, 1000); // Start the sequence with an initial delay of 1 second

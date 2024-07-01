@@ -1,8 +1,3 @@
-@font-face {
-    font-family: "San Francisco";
-    font-weight: 700;
-    src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff");
-}
 body {
     display: flex;
     justify-content: center;
@@ -29,7 +24,7 @@ body {
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-    gap: 1px; /* Adjust this value to reduce the space between chat boxes */
+    gap: 1px;
 }
 
 .message {
@@ -60,6 +55,11 @@ body {
     align-self: flex-end;
 }
 
+/* Override rounded corners for actual text messages */
+.message:not(.typing-indicator) {
+    border-radius: 18px;
+}
+
 .user-input {
     display: flex;
     align-items: center;
@@ -82,4 +82,44 @@ body {
     color: white;
     cursor: pointer;
     font-size: 16px;
+}
+
+.typing-indicator {
+    display: flex;
+    align-items: center;
+    margin: 5px 0;
+    padding: 15px 20px; 
+    border-radius: 18px 18px 18px 0;
+    background-color: #f0f0f0;
+    color: black;
+    align-self: flex-start;
+    font-size: 20px;
+    line-height: 1.4;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.typing-indicator span {
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    height: 12px; 
+    margin-right: 5px; 
+    width: 12px; 
+    animation-name: blink;
+    animation-duration: 2s;
+    animation-fill-mode: both;
+    animation-iteration-count: infinite;
+}
+.typing-indicator span:nth-child(2) {
+    animation-delay: .2s;
+}
+
+.typing-indicator span:nth-child(3) {
+    animation-delay: .4s;
+}
+
+@keyframes blink {
+    0% { opacity: .2; }
+    20% { opacity: 1; }
+    100% { opacity: .2; }
 }
