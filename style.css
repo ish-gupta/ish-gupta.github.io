@@ -9,13 +9,23 @@ body {
     font-family: "San Francisco", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
 }
 
+body.dark-mode {
+    background-color: #1e1e1e;
+    color: #f3f3f3;
+}
+
 .chat-container {
+    position: relative;
     width: 100%;
     height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     background-color: #fff;
+}
+
+body.dark-mode .chat-container {
+    background-color: #2c2c2c;
 }
 
 #chat-box {
@@ -30,7 +40,7 @@ body {
 .message {
     display: inline-block;
     max-width: 80%;
-    border-radius: 18px;
+    border-radius: 18px; /* Full rounded corners */
     padding: 10px 15px;
     margin: 5px 0;
     font-size: 20px;
@@ -41,23 +51,25 @@ body {
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 }
 
+body.dark-mode .message.bot {
+    background-color: #3a3a3a;
+    color: #f3f3f3;
+}
+
+body.dark-mode .message.user {
+    background-color: #007aff;
+}
+
 .message.bot {
     background-color: #f0f0f0;
     color: black;
-    border-radius: 18px 18px 18px 0;
     align-self: flex-start;
 }
 
 .message.user {
     background-color: #007aff;
     color: white;
-    border-radius: 18px 18px 0 18px;
     align-self: flex-end;
-}
-
-/* Override rounded corners for actual text messages */
-.message:not(.typing-indicator) {
-    border-radius: 18px;
 }
 
 .user-input {
@@ -68,11 +80,23 @@ body {
     background: #fff;
 }
 
+body.dark-mode .user-input {
+    background: #2c2c2c;
+    border-top: 1px solid #444;
+}
+
 #user-message {
     border: none;
     padding: 15px;
     flex-grow: 1;
     font-size: 16px;
+    background: none;
+    color: inherit;
+}
+
+body.dark-mode #user-message {
+    background: #1e1e1e;
+    color: #f3f3f3;
 }
 
 #send-button {
@@ -96,6 +120,19 @@ body {
     font-size: 20px;
     line-height: 1.4;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    max-height: 0;
+    animation: slideInFromBottom 0.5s ease-out;
+    transition: max-height 0.5s ease-out;
+}
+
+body.dark-mode .typing-indicator {
+    background-color: #3a3a3a;
+    color: #f3f3f3;
+}
+
+.typing-indicator.expanded {
+    max-height: 40px;
 }
 
 .typing-indicator span {
@@ -110,6 +147,7 @@ body {
     animation-fill-mode: both;
     animation-iteration-count: infinite;
 }
+
 .typing-indicator span:nth-child(2) {
     animation-delay: .2s;
 }
@@ -122,4 +160,65 @@ body {
     0% { opacity: .2; }
     20% { opacity: 1; }
     100% { opacity: .2; }
+}
+
+@keyframes slideInFromBottom {
+    0% {
+        transform: translateY(80%) translateX(-20%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0) translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Toggle Switch Styles */
+.toggle-switch {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.toggle-switch input {
+    height: 0;
+    width: 0;
+    visibility: hidden;
+}
+
+.toggle-switch label {
+    cursor: pointer;
+    width: 50px;
+    height: 25px;
+    background: #bfbfbf;
+    display: block;
+    border-radius: 100px;
+    position: relative;
+}
+
+.toggle-switch label::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 21px;
+    height: 21px;
+    background: #fff;
+    border-radius: 90px;
+    transition: 0.3s;
+}
+
+.toggle-switch input:checked + label {
+    background: #007aff;
+}
+
+.toggle-switch input:checked + label::after {
+    left: calc(100% - 2px);
+    transform: translateX(-100%);
+}
+
+label:active:after {
+    width: 30px;
 }
