@@ -7,11 +7,12 @@ const darkModeToggle = document.getElementById('dark-mode-toggle');
 const messages = [
     { text: 'Hey there! 👋', type: 'bot' },
     { text: "I'm Ishita", type: 'bot' },
-    { text: 'I like to code', type: 'bot' },
+    { text: "I like to code", type: 'bot' },
+    { text: "I've worked on some fascinating projects along the way. <a href='projects.html'>Check them out!</a>", type: 'bot' },
+    { text: "<a href='experience.html'>Here</a> is a timeline of my professional journey", type: 'bot' },
     { text: "You can contact me at <a href='mailto:ishitangupta@gmail.com'>ishitangupta@gmail.com</a>", type: 'bot' },
     { text: "Or connect with me on LinkedIn: <a href='https://linkedin.com/in/ish--gupta'>linkedin.com/in/ish--gupta/</a>", type: 'bot' },
-    { text: 'Have a nice evening', type: 'bot' },
-    { text: "<img src='images/cutie.jpg' alt='Description of image' style='max-width: 100%; max-height: 200px;' />", type: 'bot' }
+    { text: 'Have a great day', type: 'bot' },
 ];
 
 // Function to display a single message

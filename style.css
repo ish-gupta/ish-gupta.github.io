@@ -222,3 +222,19 @@ body.dark-mode .typing-indicator {
 label:active:after {
     width: 30px;
 }
+
+/* Unvisited link */
+a:link {
+    color: #0a84ff; /* Change this color to whatever you prefer */
+}
+
+/* Visited link */
+a:visited {
+    color: #ba5bf1; /* Change this color to whatever you prefer */
+}
+
+/* Hovered link */
+a:hover {
+    color: #f1b25b; /* Change this color to whatever you prefer */
+}
+/* 
