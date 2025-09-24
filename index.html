@@ -1,26 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
     <script async src="https://www.googletagmanager.com/gtag/js?id=PLACEHOLDER"></script>
     <script src="analytics.js"></script>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Ishita's Portfolio :)</title>
+    <title>Ishita's Portfolio :)</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <a href="#chat-box" class="skip-link">Skip to chat</a>
     
     <div class="chat-container">
         <div class="toggle-switch">
-            <input type="checkbox" id="dark-mode-toggle">
+            <input type="checkbox" id="dark-mode-toggle" aria-label="Toggle dark mode">
             <label for="dark-mode-toggle"></label>
         </div>
-        <div id="chat-box"></div>
+        <div id="chat-box" role="log" aria-live="polite" aria-label="Chat messages">
+            <div class="welcome-message">
+                Hi! I'm Ishita's portfolio chatbot. Messages will appear here shortly...
+            </div>
+        </div>
         <div class="user-input">
-            <input type="text" id="user-message" placeholder="Ask me anything..." />
-            <button id="send-button">Send</button>
+            <input type="text" id="user-message" placeholder="Ask me anything..." aria-label="Type your message" />
+            <button id="send-button" aria-label="Send message">Send</button>
+        </div>
+    </div>
+
+    <!-- Experience Command Palette -->
+    <div id="experience-palette" class="command-palette">
+        <div class="palette-content">
+            <div class="palette-header">
+                <input type="text" id="experience-search" placeholder="🔍 Search experience..." autocomplete="off" />
+                <button id="close-experience" class="close-btn" aria-label="Close experience palette">×</button>
+            </div>
+            <div class="palette-results" id="experience-results"></div>
+        </div>
+    </div>
+
+    <!-- Projects Dock -->
+    <div id="projects-dock" class="dock-container">
+        <div class="dock">
+            <button id="close-projects-dock" class="dock-close-btn" aria-label="Close projects dock">×</button>
+            <div class="dock-items" id="dock-items"></div>
+        </div>
+    </div>
+
+    <!-- Project Detail Modal -->
+    <div id="project-modal" class="project-modal">
+        <div class="modal-content">
+            <button id="close-project" class="close-btn" aria-label="Close project details">×</button>
+            <div class="project-details" id="project-details"></div>
+        </div>
+    </div>
+
+    <!-- Experience Detail Modal -->
+    <div id="experience-modal" class="experience-modal">
+        <div class="modal-content">
+            <button id="close-experience-detail" class="close-btn" aria-label="Close experience details">×</button>
+            <div class="experience-details" id="experience-details"></div>
         </div>
     </div>
 
